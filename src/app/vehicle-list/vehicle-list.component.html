@@ -1,0 +1,48 @@
+
+
+<h3>Vehicle List</h3>
+<button class="btn btn-success" (click)="open(content)">
+  Add
+</button>
+<table class="table table-borderd">
+  <thead>
+    <th>Owner Name</th>
+    <th>Vehicle Type</th>
+    <th>License No</th>
+    <th>Entry Time</th>
+    <th>Exit Type</th>
+    <th>Status</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let v of vehicleList">
+      <td>{{v.ownerName}}</td>
+      <td>{{v.type.typeName}}</td>
+      <td>{{v.licenseNumber}}</td>
+      <td>{{v.entryTime | date:'dd-MM-yyyy hh:mm a'}}</td>
+      <td>{{v.exitTime | date:'dd-MM-yyyy hh:mm a'}}</td>
+      <td>{{v.status}}</td>
+      <td>
+        <button class="btn btn-primary" (click)="open(content,v.id)">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title"
+        id="modal-basic-title">
+        {{oparation}}
+    </h4>
+    <button type="button" class="close"
+            aria-label="Close" (click)="modal.dismiss('Cross click');modalClose();">
+        <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-vehicle-add [id]="selectedId" (saveVehilce)="save($event)"></app-vehicle-add>
+  </div>
+</ng-template>
+

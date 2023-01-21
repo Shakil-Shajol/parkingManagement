@@ -1,0 +1,84 @@
+<form [formGroup]="vehicleForm">
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="licenseNumber">License Number</label>
+        <input type="text" class="form-control" id="licenseNumber" aria-describedby="licenseNumber"
+          placeholder="License Number" formControlName="licenseNumber">
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="licenseNumber">Vehicle Type</label>
+        <select class="form-control" formControlName="typeId" (change)="changeType($event)">
+          <option *ngFor="let item of vehicleTypes" [value]="item.id">{{item.typeName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="ownerName">Owner Name</label>
+        <input type="text" class="form-control" id="ownerName" aria-describedby="ownerName" placeholder="Owner Name"
+          formControlName="ownerName">
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="phone">Owner Phone</label>
+        <input type="text" class="form-control" id="phone" aria-describedby="phone" placeholder="Owner Phone"
+          formControlName="phone">
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="address">Owner Address</label>
+        <input type="text" class="form-control" id="address" aria-describedby="address" placeholder="Owner Address"
+          formControlName="address">
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-control" formControlName="status">
+          <option *ngFor="let item of statusList" [value]="item.value">{{item.text}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="parkingCharge">parkingCharge</label>
+        <input type="text" class="form-control" readonly id="parkingCharge" aria-describedby="parkingCharge"
+          placeholder="Parking Charge" formControlName="parkingCharge">
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="entryTime">Entry Time</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+            #dp="ngbDatepicker" formControlName="entryTime" />
+          <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="exitTime">Exit Time</label>
+        <div class="input-group">
+          <input id="exitTime" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+            #dp2="ngbDatepicker" formControlName="exitTime" />
+          <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp2.toggle()" type="button"></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-right">
+      <button class="btn btn-success" (click)="save()">
+        Save
+      </button>
+    </div>
+  </div>
+</form>
